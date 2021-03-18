@@ -26,10 +26,32 @@ public class SampleSteps {
         driver.get("https://kristinek.github.io/site");
     }
 
+    @Given("^I am on the shop page$")
+    public void iAmOnTheShopPage() throws Throwable {
+        driver.get("http://automationpractice.com/index.php");
+    }
+
+    @Then("^I should see shop page title$")
+    public void iShouldSeeShopPageTitle() throws Throwable {
+        assertTrue(driver.findElement(By.className("logo")).isDisplayed());
+    }
+
     @Then("^I should see home page header$")
     public void iShouldSeeHomePageHeader() throws Throwable {
         assertEquals("This is a home page",
                 driver.findElement(By.cssSelector("h1")).getText());
+    }
+
+    @Then("^I should see shop page contact phone$")
+    public void iShouldSeeShopPageContactPhone() throws Throwable {
+        assertEquals("0123-456-789",
+                driver.findElement(By.xpath("//strong[contains(text(),'0123-456-789')]")).getText());
+    }
+
+    @Then("^I should see shop page bottom phone$")
+    public void iShouldSeeShopPageBottomPhone() throws Throwable {
+        assertEquals("(347) 466-7432",
+                driver.findElement(By.xpath("//span[contains(text(),'(347) 466-7432')]")).getText());
     }
 
     @And("^I should see home page description$")

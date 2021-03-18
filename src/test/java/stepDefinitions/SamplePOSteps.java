@@ -17,11 +17,13 @@ public class SamplePOSteps {
     private WebDriver driver;
     static AgePage agePage;
     static AgeSubmittedPage ageSubmittedPage;
+    static ShopTitlePage shopTitlePage;
 
     public SamplePOSteps() {
         this.driver = Hooks.driver;
         agePage = PageFactory.initElements(Hooks.driver, AgePage.class);
         ageSubmittedPage = PageFactory.initElements(Hooks.driver, AgeSubmittedPage.class);
+        shopTitlePage = PageFactory.initElements(Hooks.driver, ShopTitlePage.class);
     }
 
     @When("^I enter name: \"([^\"]*)\" using PO$")
