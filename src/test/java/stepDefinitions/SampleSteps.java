@@ -154,11 +154,11 @@ public class SampleSteps {
         Select dropdown = new Select(driver.findElement(By.id("status")));
         dropdown.selectByVisibleText(status);
         }
-    @Then("^click button add$")
+    @And("^click button add$")
     public void iclickButAdd(){
         driver.findElement(By.xpath("/html/body/div[@class='w3-row']/div[@class='w3-half']/div[@class='w3-container']/div[@id='addEditPerson']/div[@class='w3-btn-group']/button[@id='modal_button'][1]")).click();
     }
-    @When("^click on edit button$")
+    @And("^click on edit button$")
     public void iclickEditBut(){
      driver.findElement(By.xpath("//li[@id='person3']/span[@class='w3-closebtn editbtn w3-padding w3-margin-right w3-medium' and 3]/i[@class='fa fa-pencil' and 1]")).click();
     }
