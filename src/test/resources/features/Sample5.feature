@@ -31,3 +31,11 @@ Feature: Introduction to cucumber part 4
       | Ann  | 5   | Hello, Ann, you are a kid    |
       | Bob  | 61  | Hello, Bob, you are an adult |
 
+ # TODO - create Scenario Outline for 'Give us your feedback!' page
+  # URL: https://kristinek.github.io/site/tasks/provide_feedback
+  # Navigate to page
+  # Set Name, Age and Genre
+  # - All input MUST be done in single step
+  # - All input MUST use Examples for data
+  # - Step can use Map or Domain object
+  # Click "Send" button and verify that previous input is displayed in correct fields
