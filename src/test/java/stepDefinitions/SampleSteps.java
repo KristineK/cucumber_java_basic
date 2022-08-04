@@ -99,7 +99,7 @@ public class SampleSteps {
         driver.get("https://kristinek.github.io/site/examples/actions");
     }
 
-//Sample1.feature
+//------------------------------------------Sample1.feature------------------------
     @When("^I am on the locators page$")
     public void iAmOnTheLocatorsPage() throws Throwable {
         driver.get("https://kristinek.github.io/site/examples/locators");
@@ -130,7 +130,7 @@ public class SampleSteps {
     public void IAmNotNavigatedToAgeMessagePage(){
         assertFalse(driver.getCurrentUrl().contains("https://kristinek.github.io/site/examples/age_2.html"));
     }
-    //Sample3 Features
+    //------------------------------------------Sample3 Features
     @Given("^I am on feedback page$")
     public void IAmOnFeedbackPage(){
         driver.get("https://kristinek.github.io/site/tasks/provide_feedback");
@@ -157,4 +157,49 @@ public class SampleSteps {
         assertEquals(String.valueOf(personAge), driver.findElement(By.id("age")).getText());
     }
 
+    //--------------------------------Task1.feature-----------------------------------------------------
+    //-----------------# - Scenario outline for error cases. One example for each case:------------------
+
+    @Given ("^I am on the page$")
+    public void iAmOnThePage(){
+        driver.get("https://kristinek.github.io/site/tasks/enter_a_number");
+    }
+
+    @When ("^I enter ([^\"]*)$")
+    public void iEnterIn(String in){
+        driver.findElement(By.id("numb")).clear();
+        driver.findElement(By.id("numb")).sendKeys(in);
+    }
+
+    @Then("^I click submit button$")
+    public void iClickSubmit(){
+        driver.findElement(By.className("w3-btn")).click();
+    }
+
+    @Then("^I have ([^\"]*)$")
+    public void iHaveErrorMsg(String errorMsg) {
+        assertEquals(errorMsg, driver.findElement(By.id("ch1_error")).getText());
+    }
+
+    //-----------------# - Scenario for correct number----------------------------------------
+    @Given("^I am on the Enter a number page$")
+    public void openEnterANumberPage() {
+        driver.get("https://kristinek.github.io/site/tasks/enter_a_number");
+    }
+    @Given ("^I am on enter a number page correct$")
+    public void IAmOnEnterANumberPageCorrect(){
+        driver.get("https://kristinek.github.io/site/tasks/enter_a_number");
+    }
+    @When("^I enter number: \"(\\d+)\"$")
+    public void validInputNumber(String validNumber) {
+        driver.findElement(By.id("numb")).sendKeys(String.valueOf(validNumber));
+    }
+    @And("^I click on Submit button$")
+    public void SubmitButton() {
+        driver.findElement(By.className("w3-btn")).click();
+    }
+    @Then("^I see the result message \"([^\"]*)\"$")
+    public void correctResult(String finalResult) {
+        assertEquals(finalResult, driver.switchTo().alert().getText());
+    }
 }
