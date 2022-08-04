@@ -130,4 +130,31 @@ public class SampleSteps {
     public void IAmNotNavigatedToAgeMessagePage(){
         assertFalse(driver.getCurrentUrl().contains("https://kristinek.github.io/site/examples/age_2.html"));
     }
+    //Sample3 Features
+    @Given("^I am on feedback page$")
+    public void IAmOnFeedbackPage(){
+        driver.get("https://kristinek.github.io/site/tasks/provide_feedback");
+    }
+    @When("^I enter name \"([^\"]*)\" for feedback$")
+    public void EnterNameInFeedback(String personName){
+        driver.findElement(By.id("fb_name")).clear();
+        driver.findElement(By.id("fb_name")).sendKeys(personName);
+    }
+    @When("^I enter age (\\d+) for feedback$")
+    public void IEnterAgeInFeedback(int personAge){
+        driver.findElement(By.id("fb_age")).clear();
+        driver.findElement(By.id("fb_age")).sendKeys(String.valueOf(personAge));
+    }
+
+    @When("^I click send button for feedback$")
+    public void ClickSendFeedback(){
+        driver.findElement(By.className("w3-btn-block")).click();
+    }
+
+    @Then ("^Check feedback shows name \"([^\"]*)\" and age (\\d+)$")
+    public void assertNameAndAgeInFeedbackCheck(String personName, int personAge) {
+        assertEquals(personName, driver.findElement(By.id("name")).getText());
+        assertEquals(String.valueOf(personAge), driver.findElement(By.id("age")).getText());
+    }
+
 }
