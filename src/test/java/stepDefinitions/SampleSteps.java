@@ -202,4 +202,19 @@ public class SampleSteps {
     public void ISeeTheCorrectResult(String finalResult) {
         assertEquals(finalResult, driver.switchTo().alert().getText());
     }
-}
+
+//----------------------------------    Sample4.feature--------------------------------------
+
+
+    @When ("^I select feedback languages$")
+    public void ISelectFeedbackLanguages(List<String> languages) {
+        for (String language : languages) {
+            driver.findElement(By.xpath("//*[@value='" + language + "']")).click();
+        }
+    }
+    @Then ("^I can see languages \"([^\"]*)\" in feedback check$")
+            public void ICanSeeLanguagesInFeedbackCheck(String languages)throws Exception {
+        Thread.sleep(2000);
+        assertEquals(languages, driver.findElement(By.id("language")).getText());
+        }
+    }
