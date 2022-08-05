@@ -196,7 +196,7 @@ public class SampleSteps {
     }
     @And("^I click on Submit button$")
     public void IClickOnSubmitButton() {
-        driver.findElement(By.className("w3-btn")).click();
+        driver.findElement(By.className("w3-btn-block")).click();
     }
     @Then("^I see the result message \"([^\"]*)\"$")
     public void ISeeTheCorrectResult(String finalResult) {
@@ -217,4 +217,23 @@ public class SampleSteps {
         Thread.sleep(2000);
         assertEquals(languages, driver.findElement(By.id("language")).getText());
         }
+//----------------------------------    Sample5.feature--------------------------------------
+
+    @When ("^I set feedback values$")
+    public void SetFeedbackValues(Map<String, String> inputValues) {
+     //   EnterNameInFeedback(inputValues.get("name"));
+        driver.findElement(By.id("fb_name")).clear();
+        driver.findElement(By.id("fb_name")).sendKeys(inputValues.get("name"));
+        driver.findElement(By.id("fb_age")).clear();
+        driver.findElement(By.id("fb_age")).sendKeys(inputValues.get("age"));
+        driver.findElement(By.xpath("//*[@value=\"" +inputValues.get("genre").toLowerCase()+"\"]")).click();
     }
+    @Then ("^I can see entered values in feedback check$")
+    public void ICanSeeEnteredValuesInFeedbackCheck(Map<String, String> inputValues){
+        assertEquals(inputValues.get("name"), driver.findElement(By.id("name")).getText());
+        assertEquals(inputValues.get("age"), driver.findElement(By.id("age")).getText());
+        assertEquals(inputValues.get("genre").toLowerCase(), driver.findElement(By.id("gender")).getText());
+
+    }
+
+}
