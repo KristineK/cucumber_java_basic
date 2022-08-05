@@ -16,7 +16,7 @@ Feature: Task 2 scenario outline
 #   * removing a person
 # - check that clear button on adding a user works correctly
 
-  Scenario Outline:
+  Scenario Outline: Task 2 scenario outline
     Given I am on people with jobs page
     Then I click add person button
     And I add a Name and Job
@@ -51,3 +51,9 @@ Feature: Task 2 scenario outline
 
     |name|  job |
     |John|Tester|
+
+
+    Scenario: task 2 scenario just because we need one
+      Given I am on people with jobs page
+      And I remove a person
+      Then I check if i removed the person
