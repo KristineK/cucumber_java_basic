@@ -4,10 +4,10 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import pages_sample.*;
+import pages_sample.AgePage;
+import pages_sample.AgeSubmittedPage;
 
 import java.util.Map;
 
@@ -54,4 +54,16 @@ public class SamplePOSteps {
         agePage.enterName(valuesToEnter.get("name"));
         agePage.enterAge(valuesToEnter.get("age"));
     }
+    //-----------------------------SampleUsingPO2------------------------------------
+
+    @Then("^I see error: \"([^\"]*)\" using PO$")
+    public void ISeeErrorUsingPO(String errorMsg){
+        agePage.checkErrorMessage(errorMsg);
+    }
+
+    @And ("^I remain in age page using PO$")
+    public void IRemainInAgePageUsingPO(){
+    assertEquals(agePage.getPageUrl(), driver.getCurrentUrl());
+    }
+
 }

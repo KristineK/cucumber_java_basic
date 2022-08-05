@@ -52,9 +52,9 @@ Feature: Introduction to cucumber part 4
 #
 #    And I click on Submit button
 #    Then I can see entered values in feedback check
-@FeedbackTest
+#@FeedbackTest
   #table has to be right after caller/step
-    Scenario Outline: For Give us your feedback  
+    Scenario Outline: For Give us your feedback
       Given I am on feedback page
       When I set feedback values
         | name | <name> |

@@ -6,6 +6,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import java.util.List;
 import java.util.Map;
@@ -234,6 +235,104 @@ public class SampleSteps {
         assertEquals(inputValues.get("age"), driver.findElement(By.id("age")).getText());
         assertEquals(inputValues.get("genre").toLowerCase(), driver.findElement(By.id("gender")).getText());
 
+    }
+
+    //----------------------------------Task2.feature---------------------------------------------
+
+    @Given ("^I am on people with jobs page$")
+    public void IAmOnPeopleWithJobsPage(){
+        driver.get("https://kristinek.github.io/site/tasks/list_of_people_with_jobs.html");
+    }
+    @Then ("^I click add person button$")
+    public void IClickAddPersonButton(){
+        driver.findElement(By.id ("addPersonBtn")).click();
+    }
+    @And ("^I add a Name and Job$")
+    public void IAddANameAndJob(Map<String, String> inputNJ) {
+        driver.findElement(By.id("name")).clear();
+        driver.findElement(By.id("name")).sendKeys(inputNJ.get("name"));
+        driver.findElement(By.id("job")).clear();
+        driver.findElement(By.id("job")).sendKeys(inputNJ.get("job"));
+    }
+
+    @And("^I click clear button$")
+    public void iClickClearButton(){
+        driver.findElement(By.xpath("//*[@onclick = 'openModalForAddPersonWithJob()']")).click();
+    }
+
+    @And("^I check if fields are clear$")
+    public void iCheckIfFieldsAreClear(){
+        assertEquals("", driver.findElement(By.id("name")).getText());
+        assertEquals("", driver.findElement(By.id("job")).getText());
+
+    }
+
+    @Then ("^I click the add button$")
+    public void IClickTheAddButton(){
+        driver.findElement(By.id("modal_button")).click();
+    }
+    @Then("^I check entered people$")
+    public void iCheckEnteredPeople(Map<String,String> Person) {
+        assertEquals(Person.get("name"), driver.findElement(By.xpath("//*[@id='person3']//*[@class='w3-xlarge name']")).getText());
+        assertEquals(Person.get("job"), driver.findElement(By.xpath("//*[@id='person3']//*[@class='job']")).getText());
+
+//        assertEquals(Person.get("name"), driver.findElement(By.id("name")).getText());
+//        assertEquals(Person.get("job"), driver.findElement(By.id("job")).getText());
+
+    }
+
+
+
+    @Then ("^I click edit button$")
+    public void iClickOnEditSymbol(){
+        driver.findElement(By.xpath("//*[@onclick = 'openModalForEditPersonWithJob(0)']")).click();
+    }
+//    public void IClickEditButton(){
+//        driver.findElement(By.xpath("//li[@id='person3']//span[contains(@class,'editbtn')]"));
+//    }
+
+//    @And ("^I edit a persons credentials$")
+//    public void IEditAPersonsCredentials(String None){
+//        driver.findElement(By.id("name")).clear();
+//        driver.findElement(By.id("name")).sendKeys("None");
+//
+//    }
+
+    @Then("^I edit a job field: \"([^\"]*)\"$")
+    public void iEditJobField(String Nope)  throws Throwable{
+        driver.findElement(By.id("job")).clear();
+        driver.findElement(By.id("job")).sendKeys(Nope);
+    }
+
+    @Then ("^I check changed person credentials \"([^\"]*)\"$")   //quotation marks in scenario
+    public void ICheckChangedPersonCredentials(String None){
+        assertEquals(None,driver.findElement(By.xpath("//*[@id='person0']//*[@class='job']")).getText());
+
+    }
+
+    @Then ("^I click edit confirm button$")
+    public void IClickEditConfirmButton(){
+        driver.findElement(By.id("modal_button")).click();
+    }
+
+    @And ("^I remove a person$")
+    public void IRemoveAPerson(){
+        driver.findElement(By.xpath("//li[@id='person2']//span[contains(@class,'closebtn')]")).click();
+    }
+
+    @Then ("^I check if i removed the person$")
+    public void ICheckIfIRemovedThePerson(){
+        List<WebElement> list = driver.findElements(By.className("w3-padding-16"));
+        list.forEach(webElement -> {
+            if(webElement.getText().contains("Jane")){
+                fail();
+            }
+        });
+    }
+
+    @Then ("^I reset the list$")
+    public void IResetTheList(){
+        driver.findElement(By.xpath("//button[@onclick = 'resetListOfPeople()']")).click();
     }
 
 }

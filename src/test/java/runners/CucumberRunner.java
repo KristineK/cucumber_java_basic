@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         plugin = {"pretty", "html:cucumber-report/html-report",
                 "junit:cucumber-report/junit-report.xml",
                 "json:cucumber-report/json-report.json"},
-        tags = {"@FeedbackTest"},                     //Task1Feature             //remove ~ to use tags
+        tags = {"@Task2"},                     //Task1Feature             //remove ~ to use tags
         glue = {"stepDefinitions"}
 )
 public class CucumberRunner {
