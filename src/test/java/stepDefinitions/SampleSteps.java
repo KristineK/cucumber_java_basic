@@ -183,7 +183,7 @@ public class SampleSteps {
 
     //-----------------# - Scenario for correct number----------------------------------------
     @Given("^I am on the Enter a number page$")
-    public void openEnterANumberPage() {
+    public void IAmOnTheEnterANumberPage() {
         driver.get("https://kristinek.github.io/site/tasks/enter_a_number");
     }
     @Given ("^I am on enter a number page correct$")
@@ -191,15 +191,15 @@ public class SampleSteps {
         driver.get("https://kristinek.github.io/site/tasks/enter_a_number");
     }
     @When("^I enter number: \"(\\d+)\"$")
-    public void validInputNumber(String validNumber) {
+    public void IEnterValidInputNumber(String validNumber) {
         driver.findElement(By.id("numb")).sendKeys(String.valueOf(validNumber));
     }
     @And("^I click on Submit button$")
-    public void SubmitButton() {
+    public void IClickOnSubmitButton() {
         driver.findElement(By.className("w3-btn")).click();
     }
     @Then("^I see the result message \"([^\"]*)\"$")
-    public void correctResult(String finalResult) {
+    public void ISeeTheCorrectResult(String finalResult) {
         assertEquals(finalResult, driver.switchTo().alert().getText());
     }
 }
