@@ -7,3 +7,4 @@ phantomjsdriver.log
 *.jpg
 cucumber_project.iml
 
+/target
